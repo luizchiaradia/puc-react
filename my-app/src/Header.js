@@ -1,23 +1,34 @@
 import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
+import { UserScreen } from './UserScreen';
 
-function Header(props) {
-    return (
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            {props.message}
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-    );
-  }
-  
-  export default Header;
+export class Header extends Component {
+    state = {//state é um objeto
+        count: 0,
+    }
+    componentDidMount() {
+        console.log('Componente montado');
+    }
+    componentDidUpdate() {
+        console.log('Atualizou');
+    }
+    componentWillUnmount() {
+        console.log('Componente desmontado');
+    }
+    componentDidCatch(error, info) {
+        console.log('Erro capturado');
+    }
+    render() {
+        return (
+            <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1>
+                {this.props.message}
+            </h1>
+            <p>Você clicou {this.state.count} vezes no botão.</p>
+            <button onClick={() => this.setState({ count: this.state.count + 1 })}>Incrementar</button>
+            <UserScreen />
+            </header>
+        );
+    }
+}
