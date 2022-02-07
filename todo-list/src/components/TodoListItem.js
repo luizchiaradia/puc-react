@@ -1,5 +1,7 @@
+import '../App.css';
+
 export const TodoListItem = (props) => {
     return (
-        <li>{props.item.name}</li>
+        <li><input type="checkbox" /> {props.item.name}</li>
     )
 };

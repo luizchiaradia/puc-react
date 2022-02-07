@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TodoListItem } from './TodoListItem';
+import '../App.css';
 
 export const TodoList = (props) => {
     const defaultListItems = [
@@ -9,9 +10,27 @@ export const TodoList = (props) => {
         { name: 'Tarefa 4', isCompleted: false },
     ];
     const [items, setItems] = useState(defaultListItems);
+    const [taskValue, setTaskValue] = useState('');
+    const handleTaskSubmit = (event) => {
+        setItems([{name: taskValue, isCompleted: false}, ...items]);
+        setTaskValue('');
+        event.preventDefault();
+    }
+
     return (
-        <ul>
-            {items.map((item) => <TodoListItem item={item}/>)}
-        </ul>
+        <div className='todo-list-container'>
+            <form onSubmit={handleTaskSubmit}>
+                <input 
+                    type="text"
+                    value={taskValue}
+                    placeholder="Adicione uma nova tarefa"
+                    onChange={(event) => setTaskValue(event.target.value)}
+                />
+                <button type="submit">Adicionar item</button>
+            </form>
+            <ul>
+                {items.map((item) => <TodoListItem item={item} />)}
+            </ul>
+        </div>
     )
 };
