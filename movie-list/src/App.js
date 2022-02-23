@@ -1,10 +1,10 @@
-import './App.css';
 import { ApplicationRoutes } from './ApplicationRouters';
+import { Header } from './components/Header';
 
 function App() {
   return (
     <>
-      <header></header>
+      <Header />
       <ApplicationRoutes />
     </>
   );
