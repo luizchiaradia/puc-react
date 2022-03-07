@@ -1,7 +1,25 @@
+import { ADD_MOVIE } from "../actions/movies";
+import { REMOVE_MOVIE } from "../actions/movies";
+
 const initialState = {
-    movies: []
+    movies: [],
 }
 
 export const favorites = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case ADD_MOVIE:
+            return {
+                ...state,
+                movies: state.movies.concat(action.payload)
+            }
+
+        case REMOVE_MOVIE:
+            return {
+                ...state,
+                movies: state.movies.filter(movie => movie.id !== action.payload.id)
+            }
+
+        default:
+            return state;
+    }
 };
